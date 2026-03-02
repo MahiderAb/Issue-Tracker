@@ -24,7 +24,7 @@ const IssueDetailPage = async ({ params }: Props) => {
   return (
     <div>
       <Heading>{issue.title}</Heading>
-      <Flex className="space-x-2 my='2'">
+      <Flex className="space-x-2 my-4">
         <IssueStatusBadge status={issue.status} />
         <Text>{issue.createdAt.toLocaleDateString()}</Text>
       </Flex>
