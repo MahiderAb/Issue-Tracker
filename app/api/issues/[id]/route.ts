@@ -1,5 +1,6 @@
 import { IssueSchema } from "@/app/ValidationSchemas";
 import prisma from "@/prisma/client";
+import { Prisma, status } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function PATCH(
@@ -42,6 +43,44 @@ export async function PATCH(
     return NextResponse.json(updatedIssue);
   } catch (err) {
     console.error("PATCH /issues error:", err);
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 },
+    );
+  }
+}
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params?: { id?: string } },
+) {
+  try {
+    const { id } = await params;
+    if (!id) {
+      return NextResponse.json(
+        { error: "Issue ID not provided" },
+        { status: 400 },
+      );
+    }
+
+    const issueId = parseInt(id);
+
+    if (isNaN(issueId))
+      return NextResponse.json({ error: "Invalid issue ID" }, { status: 400 });
+
+    const issue = await prisma.issue.findUnique({
+      where: { id: issueId },
+    });
+
+    if (!issue)
+      return NextResponse.json({ error: "Issue not found" }, { status: 404 });
+
+    await prisma.issue.delete({
+      where: { id: issueId },
+    });
+
+    return NextResponse.json({ message: "Issue deleted successfully" });
+  } catch (err) {
+    console.error("DELETE /issues error:", err);
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 },
