@@ -4,9 +4,10 @@ import Link from "next/link";
 
 const EditIssueButton = ({ issueId }: { issueId: number }) => {
   return (
+    // link to the dynamic edit page under the issue id
     <Button>
       <Pencil2Icon />
-      <Link href={`/issues/edit/${issueId}`}>Edit Issue</Link>
+      <Link href={`/issues/${issueId}/edit`}>Edit Issue</Link>
     </Button>
   );
 };
