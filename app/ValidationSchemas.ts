@@ -5,5 +5,4 @@ export const IssueSchema = z.object({
   description: z.string().min(1, "Description is required"),
 });
 
-// alias for clarity when creating a new issue
 export const createIssueSchema = IssueSchema;
