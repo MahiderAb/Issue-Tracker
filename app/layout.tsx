@@ -2,11 +2,7 @@ import "./globals.css";
 import "@radix-ui/themes/styles.css";
 import "./theme-config.css";
 import type { Metadata } from "next";
-<<<<<<< HEAD
 import { Container, Theme, ThemePanel } from "@radix-ui/themes";
-=======
-import { Theme, ThemePanel } from "@radix-ui/themes";
->>>>>>> 85f664b047b551e999fee5a986387b5145f4df0e
 import { Inter } from "next/font/google";
 import NavBar from "./NavBar";
 
@@ -30,13 +26,9 @@ export default function RootLayout({
       <body className={inter.variable}>
         <Theme accentColor="iris" radius="large">
           <NavBar />
-<<<<<<< HEAD
           <main className="p-5">
             <Container>{children}</Container>
           </main>
-=======
-          <main className="p-5">{children}</main>
->>>>>>> 85f664b047b551e999fee5a986387b5145f4df0e
         </Theme>
       </body>
     </html>
