@@ -1,15 +1,19 @@
+"use client";
+
 import { Pencil1Icon } from "@radix-ui/react-icons";
 import { Button } from "@radix-ui/themes";
-import Link from "next/link";
 import React from "react";
+import Link from "@/app/components/Link"; // use custom Radix + Next link
 
-const EditIssueButoon = ({ IssueId }: { IssueId: number }) => {
+const EditIssueButton = ({ IssueId }: { IssueId: number }) => {
   return (
-    <Button>
-      <Pencil1Icon />
-      <Link href={"/issues/${issueId}/edit"}>EditIssue</Link>
+    <Button asChild>
+      <Link href={`/issues/${IssueId}/edit`}>
+        <Pencil1Icon />
+        Edit Issue
+      </Link>
     </Button>
   );
 };
 
-export default EditIssueButoon;
+export default EditIssueButton;
